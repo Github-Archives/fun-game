@@ -1,24 +1,24 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+const canvas = document.getElementById('canvas1')
+const ctx = canvas.getContext('2d')
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+// see inherent canvas functions
+console.log(ctx)
+// set canvas width/height
+const CANVAS_WIDTH = (canvas.width = 600)
+const CANVAS_HEIGHT = (canvas.height = 600)
 
-setupCounter(document.querySelector('#counter'))
+// variable to update to show animation
+let x = 0
+
+function animate() {
+  // clear entire canvas before next render
+  ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+  // draw a simple rectangle
+  ctx.fillRect(x, 50, 100, 100)
+  // increase value to show rectangle moving horizontally
+  x++
+  // animates by calling current function infinately
+  requestAnimationFrame(animate)
+}
+// start the animation sequence
+animate()
